@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setButtonClickListeners() {
         int[] buttonIds = {
-                R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4,
-                R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9,
+                R.id.button0, R.id.button1, R.id.fiveB, R.id.sixB, R.id.subtractB,
+                R.id.oneB, R.id.twoB, R.id.threeB, R.id.addB, R.id.plusMinusB,
                 R.id.buttonAdd, R.id.buttonSubtract, R.id.buttonMultiply, R.id.buttonDivide,
                 R.id.buttonDot, R.id.buttonClear, R.id.buttonBack, R.id.buttonEquals
         };
