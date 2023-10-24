@@ -111,6 +111,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void addBtn(View view){
+        updateText(getResources().getString(R.string.add));
+    }
+
+    public void multiplyBtn(View view){
+        updateText(getResources().getString(R.string.multiply));
+    }
+
     public void parenthesisBtn(View view) {
         int cursorPos = inputText.getSelectionStart();
         int openPar = 0;
