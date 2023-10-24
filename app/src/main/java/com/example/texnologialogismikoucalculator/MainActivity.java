@@ -9,11 +9,8 @@ import org.mariuszgromada.math.mxparser.*;
 public class MainActivity extends AppCompatActivity {
 
     private EditText inputText;
-    private StringBuilder currentInput;
-
-public class MainActivity extends AppCompatActivity {
-
-    private EditText display;
+//    private StringBuilder currentInput;
+//    private EditText display;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,102 +19,84 @@ public class MainActivity extends AppCompatActivity {
 
 
         inputText = findViewById(R.id.inputText);
-        currentInput = new StringBuilder();
+        inputText.setShowSoftInputOnFocus(false);
+//        currentInput = new StringBuilder();
 
-        // Set click listeners for all the buttons
-        setButtonClickListeners();
-    }
+//        setButtonClickListeners();
 
-    private void setButtonClickListeners() {
-        int[] buttonIds = {
-                R.id.button0, R.id.button1, R.id.fiveB, R.id.sixB, R.id.subtractB,
-                R.id.oneB, R.id.twoB, R.id.threeB, R.id.addB, R.id.plusMinusB,
-                R.id.buttonAdd, R.id.buttonSubtract, R.id.buttonMultiply, R.id.buttonDivide,
-                R.id.buttonDot, R.id.buttonClear, R.id.buttonBack, R.id.buttonEquals
-        };
-
-        for (int id : buttonIds) {
-            Button button = findViewById(id);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onButtonClick((Button) v);
+        inputText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getString(R.string.inputText).equals(inputText.getText().toString())) {
+                    inputText.setText("");
                 }
-            });
-        }
-    }
-
-    private void onButtonClick(Button button) {
-        String buttonText = button.getText().toString();
-        // Handle button click, update the input, and perform calculations
-        // You'll need to implement this based on your calculator's logic.
-    }
-}
-
-        display = findViewById(R.id.input);
-        display.setShowSoftInputOnFocus(false);
+            }
+        });
 
     }
+
     private void updateText(String strToAdd) {
-        String oldStr = display.getText().toString();
+        String oldStr = inputText.getText().toString();
 
-        int cursorPos = display.getSelectionStart();
+        int cursorPos = inputText.getSelectionStart();
         String leftStr = oldStr.substring(0, cursorPos);
         String rightStr = oldStr.substring(cursorPos);
 
-        if (getString(R.string.display).equals(display.getText().toString())) {
-            display.setText(strToAdd);
-            display.setSelection(cursorPos + strToAdd.length());
+        if (getString(R.string.inputText).equals(inputText.getText().toString())) {
+            inputText.setText(strToAdd);
+            inputText.setSelection(cursorPos + strToAdd.length());
         } else {
-            display.setText(String.format("%s%s%s", leftStr, strToAdd, rightStr));
-            display.setSelection(cursorPos + strToAdd.length());
+            inputText.setText(String.format("%s%s%s", leftStr, strToAdd, rightStr));
+            inputText.setSelection(cursorPos + strToAdd.length());
         }
     }
-    public void zerosBtn(View view){
+
+    public void zerosBtn(View view) {
         updateText(getResources().getString(R.string.zero));
     }
 
-    public void oneBtn(View view){
+    public void oneBtn(View view) {
         updateText(getResources().getString(R.string.one));
     }
 
-    public void twoBtn(View view){
+    public void twoBtn(View view) {
         updateText(getResources().getString(R.string.two));
     }
 
-    public void threeBtn(View view){
+    public void threeBtn(View view) {
         updateText(getResources().getString(R.string.three));
     }
 
-    public void fourBtn(View view){
+    public void fourBtn(View view) {
         updateText(getResources().getString(R.string.four));
     }
 
-    public void fiveBtn(View view){
+    public void fiveBtn(View view) {
         updateText(getResources().getString(R.string.five));
     }
 
-    public void sixBtn(View view){
+    public void sixBtn(View view) {
         updateText(getResources().getString(R.string.six));
     }
 
-    public void sevenBtn(View view){
+    public void sevenBtn(View view) {
         updateText(getResources().getString(R.string.seven));
     }
 
-    public void eightBtn(View view){
+    public void eightBtn(View view) {
         updateText(getResources().getString(R.string.eight));
     }
 
-    public void nineBtn(View view){
+    public void nineBtn(View view) {
         updateText(getResources().getString(R.string.nine));
     }
 
-    public void clearBtn(View view){
-        display.setText("");
+    public void clearBtn(View view) {
+        inputText.setText("");
     }
-    public void equalsBtn(View view){
-        String userExp = display.getText().toString();
+
+    public void equalsBtn(View view) {
+        String userExp = inputText.getText().toString();
 
         userExp = userExp.replaceAll("÷", "/");
         userExp = userExp.replaceAll("×", "*");
@@ -126,10 +105,57 @@ public class MainActivity extends AppCompatActivity {
 
         String result = String.valueOf(exp.calculate());
 
-        display.setText(result);
-        display.setSelection(result.length());
+        inputText.setText(result);
+        inputText.setSelection(result.length());
 
     }
+
+    public void parenthesisBtn(View view) {
+        int cursorPos = inputText.getSelectionStart();
+        int openPar = 0;
+        int closePar = 0;
+        int textLen = inputText.getText().length();
+
+        for (int i = 0; i < cursorPos; i++) {
+            if (inputText.getText().toString().substring(i, i + 1).equals("(")) {
+                openPar += 1;
+            }
+            if (inputText.getText().toString().substring(i, i + 1).equals(")")) {
+                closePar += 1;
+            }
+        }
+            if (openPar == closePar || inputText.getText().toString().substring(textLen-1, textLen).equals("(")){
+            updateText("(");
+                inputText.setSelection(cursorPos + 1);
+            }
+            else if (closePar < openPar && !inputText.getText().toString().substring(textLen-1, textLen).equals("(")){
+            updateText(")");
+        }
+        inputText.setSelection(cursorPos + 1);
+    }
+
+    public void absBtn(View view){
+        updateText("abs(");
+    }
+
+    public void sqrtBtn(View view){
+        updateText("sqrt(");
+    }
+
+    public void sinBtn(View view){
+        updateText("sin(");
+    }
+
+    public void cosBtn(View view){
+        updateText("cos(");
+    }
+
+    public void log2Btn(View view){
+        updateText("log2(");
+    }
+
+
+
 }
 
 
