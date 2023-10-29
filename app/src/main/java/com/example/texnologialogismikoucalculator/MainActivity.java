@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         inputText = findViewById(R.id.inputText);
         inputText.setShowSoftInputOnFocus(false);
+//
+//
 //        currentInput = new StringBuilder();
 
 //        setButtonClickListeners();
