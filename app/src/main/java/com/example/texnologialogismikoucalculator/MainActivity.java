@@ -161,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
         updateText("cos(");
     }
 
+    public void divideBtn(View view){
+        updateText(getResources().getString(R.string.divide));
+    }
     public void log2Btn(View view){
         updateText("log2(");
     }
