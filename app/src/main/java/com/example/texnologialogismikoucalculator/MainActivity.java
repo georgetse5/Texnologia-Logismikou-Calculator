@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         inputText = findViewById(R.id.inputText);
         inputText.setShowSoftInputOnFocus(false);
+//
+//
 //        currentInput = new StringBuilder();
 
 //        setButtonClickListeners();
@@ -159,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
         updateText("cos(");
     }
 
+    public void divideBtn(View view){
+        updateText(getResources().getString(R.string.divide));
+    }
     public void log2Btn(View view){
         updateText("log2(");
     }
