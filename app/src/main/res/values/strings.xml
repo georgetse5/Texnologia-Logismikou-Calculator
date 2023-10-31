@@ -37,6 +37,7 @@
     <string name="pi">π</string>
     <string name="e">e</string>
     <string name="xSquared">x<sup><small>2</small></sup></string>
+    <string name="xPower"><sup><small>^</small></sup></string>
     <string name="xPowerY">x<sup><small>y</small></sup></string>
     <string name="isPrimeFunctionText">prime</string>
 

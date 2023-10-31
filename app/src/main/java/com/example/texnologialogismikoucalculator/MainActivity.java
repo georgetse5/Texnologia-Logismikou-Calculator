@@ -116,6 +116,11 @@ public class MainActivity extends AppCompatActivity {
     public void addBtn(View view){
         updateText(getResources().getString(R.string.add));
     }
+    public void subtractBtn(View view){
+        updateText(getResources().getString(R.string.subtract));
+    }
+    public void decimalBtn(View view) {
+        updateText(getResources().getString(R.string.decimal)); }
 
     public void multiplyBtn(View view){
         updateText(getResources().getString(R.string.multiply));
@@ -160,12 +165,52 @@ public class MainActivity extends AppCompatActivity {
     public void cosBtn(View view){
         updateText("cos(");
     }
+    public void tanBtn(View view) {
+        updateText("tan(");
+    }
+    public void arctanBtn(View view){
+        updateText("arctan(");
+    }
 
+    public void arcsinBtn(View view){
+        updateText("arcsin(");
+    }
+
+    public void acosBtn(View view){
+        updateText("acos(");
+    }
+
+    public void lnBtn(View view){
+        updateText("ln(");
+    }
+
+    public void piBtn(View view){
+        updateText("Pi(");
+    }
+    public void eBtn(View view){
+        updateText("e(");
+    }
     public void divideBtn(View view){
         updateText(getResources().getString(R.string.divide));
     }
-    public void log2Btn(View view){
-        updateText("log2(");
+    public void logBtn(View view){
+        updateText("log(");
+    }
+    public void xSquareBtn(View view) { updateText("^(2)"); }
+
+    public void xPowerBtn(View view) { updateText("^("); }
+
+    public void backspaceBtn(View view)
+    {
+        int cursorPos = inputText.getSelectionStart();
+        int textLen = inputText.getText().length();
+
+        if (cursorPos != 0 && textLen != 0) {
+            SpannableStringBuilder selection = (SpannableStringBuilder) inputText.getText();
+            selection.replace(cursorPos - 1, cursorPos, "");
+            inputText.setText(selection);
+            inputText.setSelection(cursorPos - 1);
+        }
     }
 
 }
