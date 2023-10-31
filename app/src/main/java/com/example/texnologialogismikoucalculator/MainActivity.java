@@ -165,14 +165,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void xPowerBtn(View view){ updateText("^("); }
 
-    public void backspaceBtn(View view){
+    public void backspaceBtn(View view)
+    {
         int cursorPos = inputText.getSelectionStart();
         int textLen = inputText.getText().length();
 
-        if (cursorPos != 0 && textLen != 0){
+        if (cursorPos != 0 && textLen != 0) {
             SpannableStringBuilder selection = (SpannableStringBuilder) inputText.getText();
             selection.replace(cursorPos - 1, cursorPos, "");
             inputText.setText(selection);
-            inputText.setSelection(cursorPos - 1); }
-
+            inputText.setSelection(cursorPos - 1);
+        }
+    }
 }
+
